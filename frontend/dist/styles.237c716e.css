@@ -1,0 +1,88 @@
+.game-area-container {
+    position: relative;
+    display: inline-flex;
+    padding: 3.5rem;
+}
+
+.grid {
+    display: grid;
+    grid-gap: 0;
+    max-width: 400px;
+    min-width: 300px;
+    width: 100%;
+}
+
+.cell {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+}
+
+.cell-inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 4px solid transparent;
+    font-size: 2rem;
+}
+
+.cell.selected .cell-inner-container {
+    border-color: blue;
+}
+
+.cell.given {
+    pointer-events: none;
+}
+
+.cell.given .cell-inner-container {
+    border-color: rgb(200, 200, 200);
+}
+
+.clue-container {
+    position: absolute;
+    display: flex;
+    text-align: center;
+}
+
+.clue-container.left, .clue-container.right{
+    flex-direction: column;
+}
+
+.clue-container.top, .clue-container.bottom{
+    flex-direction: row;
+}
+
+.clue-container.top {
+    top: 0;
+}
+
+.clue-container.bottom {
+    bottom: 0;
+}
+
+.clue-container.left {
+    left: 0;
+}
+
+.clue-container.right {
+    right: 0;
+}
+
+.clue-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*# sourceMappingURL=/styles.237c716e.css.map */

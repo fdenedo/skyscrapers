@@ -1,0 +1,76 @@
+Great, integrating Node.js for your frontend and Python for your backend can be an excellent way to build your web application. This will allow you to modularise your code and keep it organized, leverage the strength of each language for its appropriate use-case, and expand your application more easily in the future. Here's a general outline to help you migrate your current single-file JS app into a more structured format:
+
+### Backend Setup (Python)
+1. **Initialize a Python virtual environment**: This will help manage your project's dependencies.
+    ```bash
+    python3 -m venv myenv
+    source myenv/bin/activate  # On Windows, use `myenv\Scripts\activate`
+    ```
+2. **Install Required Packages**: You might need packages like Flask to run your web server.
+    ```bash
+    pip install Flask
+    ```
+3. **Create Your Flask App**: Create a `app.py` and define your routes and logic.
+    ```python
+    from flask import Flask, jsonify
+
+    app = Flask(__name__)
+
+    @app.route('/generatePuzzle', methods=['POST'])
+    def generate_puzzle():
+        # Your puzzle generation logic here
+        return jsonify({"status": "success", "puzzle": "your_puzzle_here"})
+
+    if __name__ == '__main__':
+        app.run(port=5000)
+    ```
+
+### Frontend Setup (Node.js)
+1. **Initialize a Node.js project**: This sets up your `package.json` which will keep track of your dependencies.
+    ```bash
+    npm init -y
+    ```
+2. **Install Parcel**:
+    ```bash
+    npm install --save-dev parcel-bundler
+    ```
+3. **Separate Your JS Modules**: Split your single JS file into multiple modules.
+    - For example, you can have `PuzzleManager.js`, `CellManager.js`, etc.
+4. **Update Your HTML**: Reference the entry JS file in your HTML.
+    ```html
+    <script src="./path_to_your_entry_file.js"></script>
+    ```
+5. **Parcel Build Script**: Add a build script to your `package.json`.
+    ```json
+    {
+        "scripts": {
+            "start": "parcel index.html"
+        },
+        ...
+    }
+    ```
+6. **Run Parcel**: Start the development server.
+    ```bash
+    npm run start
+    ```
+
+### Integration
+1. **Fetch API / Axios**: Use Fetch API or install Axios to make HTTP requests from your frontend to backend.
+    ```bash
+    npm install axios
+    ```
+    Then you can use it in your JS like:
+    ```javascript
+    axios.post('http://localhost:5000/generatePuzzle', {your_data_here})
+         .then(response => {
+             console.log(response.data);
+         });
+    ```
+
+### Putting it All Together
+1. **Run Your Backend**: Navigate to your Python folder and run `flask run` or `python app.py`.
+2. **Run Your Frontend**: Navigate to your frontend folder and run `npm run start`.
+
+Now your frontend will be running on something like `http://localhost:1234` and your backend on `http://localhost:5000`. You can make HTTP requests between them.
+
+This is a broad overview; each of these steps can have more details, so feel free to ask for more information on any of them.
